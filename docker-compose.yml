@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  proxy:
+    image: nginx
+    container_name: proxy
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d/
+      - ./nginx/index.html:/etc/nginx/html/index.html
+    working_dir: /etc/nginx
+    ports:
+      - 80:80
+    links:
+      - app1
+      - app2
+  
+  app1:
+    image: node
+    container_name: app1
+    volumes:
+      - ./app1:/home/app
+    working_dir: /home/app
+    command: npm run start
+
+  app2:
+    image: node
+    container_name: app2
+    volumes:
+      - ./app2:/home/app
+    working_dir: /home/app
+    command: npm run start

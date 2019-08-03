@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Weather app1</title>
+</head>
+
+<body>
+    <a href="/app2" class="btn btn-secondary" role="button">App2</a>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 40px; margin-top: 40px;"">Please Select City...</h1>
+        <div class="row" style="border: 1px dashed; padding: 10px; border-radius: 10px;">
+            <div class="col-3" style="border-right: 1px dashed; padding: 0px; padding-right: 10px;">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link" id="Kyiv-tab" data-toggle="pill" href="#Kyiv" role="tab" aria-controls="Kyiv"
+                        aria-selected="true">Kyiv</a>
+                    <a class="nav-link" id="Poltava-tab" data-toggle="pill" href="#Poltava" role="tab"
+                        aria-controls="Poltava" aria-selected="false">Poltava</a>
+                    <a class="nav-link" id="Lviv-tab" data-toggle="pill" href="#Lviv" role="tab" aria-controls="Lviv"
+                        aria-selected="false">Lviv</a>
+                    <a class="nav-link" id="Error-city-tab" data-toggle="pill" href="#Error-city" role="tab"
+                        aria-controls="Error-city" aria-selected="false">Error-city</a>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade" id="Kyiv" role="tabpanel" aria-labelledby="Kyiv">
+                        Kyiv</div>
+                    <div class="tab-pane fade" id="Poltava" role="tabpanel" aria-labelledby="Poltava">
+                        Poltava</div>
+                    <div class="tab-pane fade" id="Lviv" role="tabpanel" aria-labelledby="Lviv">
+                        Lviv</div>
+                    <div class="tab-pane fade" id="Error-city" role="tabpanel" aria-labelledby="Error-city">
+                        Error-city</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        let kyiv_tab = document.querySelector('#Kyiv-tab')
+        let kyiv = document.querySelector('#Kyiv')
+        let poltava_tab = document.querySelector('#Poltava-tab')
+        let poltava = document.querySelector('#Poltava')
+        let lviv_tab = document.querySelector('#Lviv-tab')
+        let lviv = document.querySelector('#Lviv')
+        let error_tab = document.querySelector('#Error-city-tab')
+        let error = document.querySelector('#Error-city')
+
+        kyiv_tab.addEventListener('click', () => {
+            kyiv.innerHTML = ''
+            fetch('/app1/kyiv')
+                .then(resp => resp.json())
+                .then(data => kyiv.innerHTML = data.result)
+                .catch(data => console.log(data))
+        })
+        poltava_tab.addEventListener('click', () => {
+            poltava.innerHTML = ''
+            fetch('/app1/poltava')
+                .then(resp => resp.json())
+                .then(data => poltava.innerHTML = data.result)
+                .catch(data => console.log(data))
+        })
+        lviv_tab.addEventListener('click', () => {
+            lviv.innerHTML = ''
+            fetch('/app1/lviv')
+                .then(resp => resp.json())
+                .then(data => lviv.innerHTML = data.result)
+                .catch(data => console.log(data))
+        })
+        error_tab.addEventListener('click', () => {
+            error.innerHTML = ''
+            fetch('/app1/error')
+                .then(resp => resp.json())
+                .then(data => error.innerHTML = data.result)
+                .catch(data => console.log(data))
+        })
+    </script>
+</body>
+
+</html>

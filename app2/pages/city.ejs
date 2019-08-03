@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+    <% include ../partials/navbar %>
+    <div class="container">
+        <div class="card" style="width: 16rem; margin: auto; margin-top: 50px">
+            <img src="http://openweathermap.org/img/wn/<%= icon %>@2x.png" class="card-img-top"
+                style="width:120px; margin:auto">
+            <div class="card-body">
+                <h5 class="card-title"><%= name %></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Temperature - <%= temperature %> °C</li>
+                <li class="list-group-item">Description - <%= description %></li>
+                <li class="list-group-item">Wind speed - <%= wind %> meter/sec</li>
+            </ul>
+        </div>
+    </div>
+
+    <% include ../partials/footer %>
+</body>
+
+</html>
